@@ -5,8 +5,8 @@ import PyPDF2
 def play(pdfReader):
     speaker = pyttsx3.init()
 
-    for page_num in range(pdfReader.numPages):
-        text = pdfReader.getPage(page_num).extractText()
+    for page_num in range(len(pdfReader.pages)):
+        text = pdfReader.pages[page_num].extract_text()
         speaker.say(text)
         speaker.runAndWait()
 
@@ -24,4 +24,5 @@ while True:
         print("An error occured:\n", e)
         print("\nEnter again\n")
 
-pdfReader = PyPDF2.PdfFileReader(book)
+pdfReader = PyPDF2.PdfReader(book)
+play(pdfReader)
